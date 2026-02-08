@@ -1,0 +1,15 @@
+services:
+  vantage-db:
+    image: postgres:16-alpine
+    container_name: vantage-point-db
+    environment:
+      POSTGRES_USER: dev_vp_user
+      POSTGRES_PASSWORD: vp_secure_pass
+      POSTGRES_DB: vantagepoint_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - vantage_data:/var/lib/postgresql/data
+
+volumes:
+  vantage_data:
