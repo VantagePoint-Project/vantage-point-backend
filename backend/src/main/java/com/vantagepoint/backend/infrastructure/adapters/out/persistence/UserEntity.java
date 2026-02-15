@@ -20,7 +20,7 @@ public class UserEntity {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(name = "password_hash", nullable = false)
+    @Column(name = "passwordHash", nullable = false)
     private String passwordHash;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
