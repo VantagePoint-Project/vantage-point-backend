@@ -1,7 +1,7 @@
 package com.vantagepoint.backend.application.service;
 
 import com.vantagepoint.backend.domain.model.User;
-import com.vantagepoint.backend.domain.port.UserRepository;
+import com.vantagepoint.backend.domain.port.UserRepositoryPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CreateUserUseCase {
 
-    private final UserRepository userRepository;
+    private final UserRepositoryPort userRepository;
 
     public User execute(String username, String email, String password) {
 
