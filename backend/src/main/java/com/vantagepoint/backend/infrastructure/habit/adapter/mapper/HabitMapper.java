@@ -1,6 +1,6 @@
 package com.vantagepoint.backend.infrastructure.habit.adapter.mapper;
 
-import com.vantagepoint.backend.domain.model.Habit;
+import com.vantagepoint.backend.domain.habit.model.Habit;
 import com.vantagepoint.backend.infrastructure.habit.adapter.HabitEntity;
 import org.springframework.stereotype.Component;
 

@@ -1,12 +1,12 @@
 package com.vantagepoint.backend.infrastructure.habit.adapter;
 
-import com.vantagepoint.backend.domain.model.Habit;
-import com.vantagepoint.backend.domain.port.HabitRepositoryPort;
+import com.vantagepoint.backend.domain.habit.model.Habit;
+import com.vantagepoint.backend.domain.habit.port.HabitRepositoryPort;
 
 import java.util.List;
 import java.util.Optional;
 
-public class HabitPersistenceAdapter implements HabitRepositoryPort {
+public class HabitPersistenceAdapterJpa implements HabitRepositoryPort {
 
     @Override
     public Habit save(Habit habit) {

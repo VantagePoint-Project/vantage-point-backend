@@ -1,20 +1,20 @@
 package com.vantagepoint.backend.infrastructure.user.adapter;
 
-import com.vantagepoint.backend.domain.model.User;
-import com.vantagepoint.backend.domain.port.UserRepositoryPort;
+import com.vantagepoint.backend.domain.user.model.User;
+import com.vantagepoint.backend.domain.user.port.UserRepositoryPort;
 import com.vantagepoint.backend.infrastructure.user.adapter.persistence.SpringDataUserRepository;
 import com.vantagepoint.backend.infrastructure.user.adapter.mapper.UserMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 @Component
-public class UserPersistenceAdapter implements UserRepositoryPort {
+public class UserPersistenceAdapterJpa implements UserRepositoryPort {
     private final SpringDataUserRepository springDataUserRepository;
 
     private final UserMapper userMapper;
 
-    public UserPersistenceAdapter(SpringDataUserRepository springDataUserRepository,
-                                  UserMapper userMapper) {
+    public UserPersistenceAdapterJpa(SpringDataUserRepository springDataUserRepository,
+                                     UserMapper userMapper) {
         this.springDataUserRepository = springDataUserRepository;
         this.userMapper = userMapper;
     }

@@ -1,6 +1,6 @@
-package com.vantagepoint.backend.domain.port;
+package com.vantagepoint.backend.domain.user.port;
 
-import com.vantagepoint.backend.domain.model.User;
+import com.vantagepoint.backend.domain.user.model.User;
 
 import java.util.Optional;
 

@@ -1,6 +1,6 @@
-package com.vantagepoint.backend.domain.port;
+package com.vantagepoint.backend.domain.habit.port;
 
-import com.vantagepoint.backend.domain.model.Habit;
+import com.vantagepoint.backend.domain.habit.model.Habit;
 import java.util.List;
 import java.util.Optional;
 

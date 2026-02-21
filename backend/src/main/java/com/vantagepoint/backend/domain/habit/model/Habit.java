@@ -1,4 +1,4 @@
-package com.vantagepoint.backend.domain.model;
+package com.vantagepoint.backend.domain.habit.model;
 
 import lombok.Builder;
 import lombok.Getter;

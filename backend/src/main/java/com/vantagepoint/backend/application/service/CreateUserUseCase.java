@@ -1,7 +1,7 @@
 package com.vantagepoint.backend.application.service;
 
-import com.vantagepoint.backend.domain.model.User;
-import com.vantagepoint.backend.domain.port.UserRepositoryPort;
+import com.vantagepoint.backend.domain.user.model.User;
+import com.vantagepoint.backend.domain.user.port.UserRepositoryPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

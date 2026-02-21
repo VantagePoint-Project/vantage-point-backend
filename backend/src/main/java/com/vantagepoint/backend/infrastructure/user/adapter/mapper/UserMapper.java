@@ -1,6 +1,6 @@
 package com.vantagepoint.backend.infrastructure.user.adapter.mapper;
 
-import com.vantagepoint.backend.domain.model.User;
+import com.vantagepoint.backend.domain.user.model.User;
 
 import com.vantagepoint.backend.infrastructure.user.adapter.UserEntity;
 import org.springframework.stereotype.Component;
