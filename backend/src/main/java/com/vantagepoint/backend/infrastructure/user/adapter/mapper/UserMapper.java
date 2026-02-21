@@ -1,7 +1,8 @@
-package com.vantagepoint.backend.infrastructure.adapters.out.persistence;
+package com.vantagepoint.backend.infrastructure.user.adapter.mapper;
 
 import com.vantagepoint.backend.domain.model.User;
 
+import com.vantagepoint.backend.infrastructure.user.adapter.UserEntity;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,5 +1,6 @@
-package com.vantagepoint.backend.infrastructure.adapters.out.persistence;
+package com.vantagepoint.backend.infrastructure.habit.adapter;
 
+import com.vantagepoint.backend.infrastructure.user.adapter.UserEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +22,9 @@ public class HabitEntity {
 
     @Column(nullable = false)
     private String frequency;
+
+    @Column(name = "is_active")
+    private boolean isActive;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

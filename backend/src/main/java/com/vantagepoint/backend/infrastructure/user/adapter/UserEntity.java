@@ -1,5 +1,6 @@
-package com.vantagepoint.backend.infrastructure.adapters.out.persistence;
+package com.vantagepoint.backend.infrastructure.user.adapter;
 
+import com.vantagepoint.backend.infrastructure.habit.adapter.HabitEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

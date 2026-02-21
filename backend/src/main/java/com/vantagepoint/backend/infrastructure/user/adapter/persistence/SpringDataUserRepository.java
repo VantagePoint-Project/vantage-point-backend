@@ -1,5 +1,6 @@
-package com.vantagepoint.backend.infrastructure.adapters.out.persistence;
+package com.vantagepoint.backend.infrastructure.user.adapter.persistence;
 
+import com.vantagepoint.backend.infrastructure.user.adapter.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
