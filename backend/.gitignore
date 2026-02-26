@@ -1,33 +1,46 @@
-HELP.md
-target/
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+# --- Directorios de Compilación (Gradle) ---
+.gradle/
 build/
+bin/
+out/
+
+# Ignorar archivos generados por MapStruct y Lombok en el build
+# Pero permitir que Gradle gestione la carpeta build completa
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### VS Code ###
+# --- IntelliJ IDEA ---
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+.idea/libraries/
+.idea/artifacts/
+.idea/modules.xml
+.idea/workspace.xml
+
+# --- Java / Spring Boot ---
+*.class
+*.log
+*.ctxt
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# --- Archivos de Sistema / Temporales ---
+.DS_Store
+Thumbs.db
+HELP.md
+
+# --- VS Code ---
 .vscode/
+.factorypath
+
+# --- Configuración de Base de Datos Local ---
+# Si usas H2 en archivo o archivos de logs de DB
+*.db
+*.h2.db
