@@ -32,13 +32,20 @@ dependencies {
     // Base de Datos (H2 para pruebas rápidas, cámbialo a PostgreSQL después)
     runtimeOnly("com.h2database:h2")
 
-    // Lombok para código limpio
-    compileOnly("org.projectlombok:lombok")
-    annotationProcessor("org.projectlombok:lombok")
-
     // Testing
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    // 1. Lombok primero
+    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
+
+// 2. MapStruct segundo
+    implementation("org.mapstruct:mapstruct:1.5.5.Final")
+    annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
+
+// 3. El Binding de ambos al final
+    annotationProcessor("org.projectlombok:lombok-mapstruct-binding:0.2.0")
 }
 
 tasks.withType<Test> {

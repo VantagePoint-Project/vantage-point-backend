@@ -14,10 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-    private Long id;
     private String username;
     private String email;
-    private String passwordHash;
-    private LocalDateTime createdAt;
-
+    private String password;
 }
