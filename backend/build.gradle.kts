@@ -46,6 +46,8 @@ dependencies {
 
 // 3. El Binding de ambos al final
     annotationProcessor("org.projectlombok:lombok-mapstruct-binding:0.2.0")
+
+    testImplementation("com.tngtech.archunit:archunit-junit5:1.2.1")
 }
 
 tasks.withType<Test> {
