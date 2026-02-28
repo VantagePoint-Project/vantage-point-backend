@@ -10,7 +10,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
+    rivate Long id;
     private String username;
     private String email;
-    private String password;
+    private String passwordHash;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }
