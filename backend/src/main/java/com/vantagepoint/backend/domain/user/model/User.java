@@ -1,19 +1,17 @@
 package com.vantagepoint.backend.domain.user.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import java.time.LocalDateTime;
 
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-    rivate Long id;
+    private Long id;
     private String username;
     private String email;
-    private String passwordHash;
+    private String password;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }
