@@ -6,7 +6,7 @@ import com.vantagepoint.backend.domain.user.model.User;
 public class UserCreateFactory {
     public User executor(CreateUserCommand command) {
         return User.builder()
-                .username(command.username())
+                .user(command.username())
                 .email(command.email())
                 .password(command.password())
                 .build();
