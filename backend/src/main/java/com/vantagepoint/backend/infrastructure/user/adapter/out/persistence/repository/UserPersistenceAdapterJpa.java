@@ -3,7 +3,6 @@ package com.vantagepoint.backend.infrastructure.user.adapter.out.persistence.rep
 import com.vantagepoint.backend.domain.user.model.User;
 import com.vantagepoint.backend.domain.user.port.out.UserRepositoryPort;
 import com.vantagepoint.backend.infrastructure.user.adapter.out.persistence.entity.UserEntity;
-
 import com.vantagepoint.backend.infrastructure.user.adapter.out.persistence.mapper.UserPersistenceMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
