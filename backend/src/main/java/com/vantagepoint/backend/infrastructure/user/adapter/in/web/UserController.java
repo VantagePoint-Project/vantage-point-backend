@@ -1,7 +1,5 @@
 package com.vantagepoint.backend.infrastructure.user.adapter.in.web;
 
-
-
 import com.vantagepoint.backend.application.user.service.UserApplicationService;
 import com.vantagepoint.backend.application.user.command.CreateUserCommand;
 import lombok.RequiredArgsConstructor;

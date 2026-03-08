@@ -1,7 +1,5 @@
 package com.vantagepoint.backend.infrastructure.user.adapter.out.persistence.repository;
 
-
-
 import com.vantagepoint.backend.domain.user.model.User;
 import com.vantagepoint.backend.domain.user.port.out.UserRepositoryPort;
 import com.vantagepoint.backend.infrastructure.user.adapter.out.persistence.entity.UserEntity;
@@ -32,7 +30,6 @@ public class UserPersistenceAdapterJpa implements UserRepositoryPort {
     @Override
     public Optional<User> findById(Long id) {
         return Optional.empty();
-
     }
 
     @Override
