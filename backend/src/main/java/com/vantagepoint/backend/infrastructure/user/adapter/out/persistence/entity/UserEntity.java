@@ -20,7 +20,7 @@ public class UserEntity {
     private Long id;
 
     @Column(name = "user", nullable = false, unique = true, length = 50)
-    private String username;
+    private String user;
 
     @Column(name = "email", nullable = false, unique = true, length = 150)
     private String email;

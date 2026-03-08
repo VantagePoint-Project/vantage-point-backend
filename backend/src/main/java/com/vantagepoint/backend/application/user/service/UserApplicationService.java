@@ -6,7 +6,9 @@ import com.vantagepoint.backend.domain.user.model.User;
 import com.vantagepoint.backend.domain.user.port.out.UserRepositoryPort;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
 @RequiredArgsConstructor
 public class UserApplicationService {
 
