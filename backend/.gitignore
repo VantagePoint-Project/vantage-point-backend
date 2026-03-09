@@ -2,7 +2,7 @@
 .gradle/
 build/
 bin/
-out/
+/out/
 
 # Ignorar archivos generados por MapStruct y Lombok en el build
 # Pero permitir que Gradle gestione la carpeta build completa
@@ -14,7 +14,7 @@ out/
 *.iws
 *.iml
 *.ipr
-out/
+/out/
 .idea/libraries/
 .idea/artifacts/
 .idea/modules.xml

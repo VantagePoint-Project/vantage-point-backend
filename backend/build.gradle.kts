@@ -28,9 +28,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-validation")
-
-    // Base de Datos (H2 para pruebas rápidas, cámbialo a PostgreSQL después)
-    runtimeOnly("com.h2database:h2")
+    runtimeOnly("org.postgresql:postgresql")
 
     // Testing
     testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -48,6 +46,10 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok-mapstruct-binding:0.2.0")
 
     testImplementation("com.tngtech.archunit:archunit-junit5:1.2.1")
+
+    //4. flyway
+    implementation("org.flywaydb:flyway-core")
+    implementation("org.flywaydb:flyway-database-postgresql")
 }
 
 tasks.withType<Test> {

@@ -1,26 +1,20 @@
 package com.vantagepoint.backend.infrastructure.user.adapter.out.persistence.repository;
 
-
-
 import com.vantagepoint.backend.domain.user.model.User;
 import com.vantagepoint.backend.domain.user.port.out.UserRepositoryPort;
 import com.vantagepoint.backend.infrastructure.user.adapter.out.persistence.entity.UserEntity;
 import com.vantagepoint.backend.infrastructure.user.adapter.out.persistence.mapper.UserPersistenceMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import java.util.Optional; // Agrégalo para el método findByEmail
 
-import java.util.Optional;
 @Component
-public class UserRepositoryPortJpa implements UserRepositoryPort {
+@RequiredArgsConstructor
+
+public class UserPersistenceAdapterJpa implements UserRepositoryPort {
 
     private final SpringDataUserRepository springDataUserRepository;
     private final UserPersistenceMapper userPersistenceMapper;
-
-    public UserRepositoryPortJpa(SpringDataUserRepository springDataUserRepository,
-                                 UserPersistenceMapper userPersistenceMapper) {
-        this.springDataUserRepository = springDataUserRepository;
-        this.userPersistenceMapper = userPersistenceMapper;
-    }
-
 
     @Override
     public User save(User user) {
@@ -33,8 +27,12 @@ public class UserRepositoryPortJpa implements UserRepositoryPort {
     }
 
     @Override
+    public Optional<User> findById(Long id) {
+        return Optional.empty();
+    }
+
+    @Override
     public Optional<User> findByEmail(String email) {
-        return springDataUserRepository.findByEmail(email)
-                .map(userPersistenceMapper::toDomain);
+        return springDataUserRepository.findByEmail(email).map(userPersistenceMapper::toDomain);
     }
 }
