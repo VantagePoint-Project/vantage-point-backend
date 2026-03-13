@@ -50,6 +50,8 @@ dependencies {
     //4. flyway
     implementation("org.flywaydb:flyway-core")
     implementation("org.flywaydb:flyway-database-postgresql")
+
+    testImplementation("com.h2database:h2")
 }
 
 tasks.withType<Test> {
