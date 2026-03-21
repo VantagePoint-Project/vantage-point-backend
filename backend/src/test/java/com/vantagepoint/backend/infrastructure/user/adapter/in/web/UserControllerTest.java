@@ -1,4 +1,4 @@
-package com.vantagepoint.backend.architecture.user.adapter.in.web;
+package com.vantagepoint.backend.infrastructure.user.adapter.in.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vantagepoint.backend.application.user.command.CreateUserCommand;
@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -19,6 +20,7 @@ import static org.hamcrest.Matchers.is;
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
+@Transactional
 class UserControllerTest {
 
     @Autowired
@@ -29,7 +31,7 @@ class UserControllerTest {
 
     @Test
     @DisplayName("Should return 201 Created when user is valid and saved in H2")
-    void shouldCreateUserSuccessfully() throws Exception {
+    void shouldCreateUserSuccessfullyTest() throws Exception {
         CreateUserCommand command = new CreateUserCommand("stivinson", "test@vantage.com", "SecurePass123");
 
         mockMvc.perform(post("/api/v1/users")
@@ -40,7 +42,7 @@ class UserControllerTest {
 
     @Test
     @DisplayName("Should return 400 Bad Request when domain validation fails")
-    void shouldReturn400WhenUsernameIsShort() throws Exception {
+    void shouldReturn400WhenUsernameIsShortTest() throws Exception {
         // "st" tiene 2 letras, el validador pide 3.
         CreateUserCommand command = new CreateUserCommand("st", "test@vantage.com", "password");
 

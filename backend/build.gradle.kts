@@ -51,7 +51,20 @@ dependencies {
     implementation("org.flywaydb:flyway-core")
     implementation("org.flywaydb:flyway-database-postgresql")
 
+    // test
     testImplementation("com.h2database:h2")
+
+    // --- Seguridad ---
+    // El motor base de Spring Security
+    implementation("org.springframework.boot:spring-boot-starter-security")
+
+    // Librerías de JJWT para crear y validar los tokens (Versión 0.12.x recomendada para Spring Boot 3+)
+    implementation("io.jsonwebtoken:jjwt-api:0.12.5")
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.5")
+    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.5") // Usa Jackson de Spring para armar el JSON del token
+
+    // Herramientas para poder testear la seguridad más adelante
+    testImplementation("org.springframework.security:spring-security-test")
 }
 
 tasks.withType<Test> {

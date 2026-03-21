@@ -3,6 +3,7 @@ package com.vantagepoint.backend.infrastructure.common.adapter.in.web.advice;
 import com.vantagepoint.backend.domain.common.exception.DomainException;
 import com.vantagepoint.backend.domain.common.exception.GeneralServiceException;
 import com.vantagepoint.backend.domain.common.exception.InvalidValueException;
+import com.vantagepoint.backend.domain.common.exception.UnauthorizedException;
 import com.vantagepoint.backend.infrastructure.common.adapter.in.web.dtos.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class GlobalExceptionHandler {
         // Matrícula de tus excepciones de negocio (400)
         STATUS_CODE.put(InvalidValueException.class.getSimpleName(), HttpStatus.BAD_REQUEST);
         STATUS_CODE.put(GeneralServiceException.class.getSimpleName(), HttpStatus.BAD_REQUEST);
-
+        STATUS_CODE.put(UnauthorizedException.class.getSimpleName(), HttpStatus.UNAUTHORIZED);
         // Matrícula de excepciones de sistema
 
     }
