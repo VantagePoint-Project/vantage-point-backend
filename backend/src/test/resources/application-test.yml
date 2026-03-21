@@ -8,3 +8,9 @@ spring:
     hibernate:
       ddl-auto: create-drop
     show-sql: true
+
+application:
+  security:
+    jwt:
+      secret-key: "esta-es-una-clave-secreta-de-prueba-de-al-menos-32-caracteres"
+      expiration: 3600000
