@@ -1,5 +1,6 @@
-package com.vantagepoint.backend.infrastructure.user.adapter.out.persistence.entity;
+package com.vantagepoint.backend.infrastructure.task.adapter.out.persistence.entity;
 
+import com.vantagepoint.backend.domain.task.model.TaskStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -8,7 +9,6 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -28,7 +28,8 @@ public class TaskEntity {
     private String description;
 
     @Enumerated(EnumType.STRING)
-    private String status;
+    @Column(name = "status")
+    private TaskStatus status;
 
     @Column(name = "due_date")
     private LocalDateTime dueDate;

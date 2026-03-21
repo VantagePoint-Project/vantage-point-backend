@@ -42,3 +42,12 @@ CREATE TABLE reminders (
     is_sent BOOLEAN DEFAULT FALSE,
     CONSTRAINT fk_reminder_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+CREATE TABLE tasks (
+    id UUID PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    title VARCHAR(100),
+    description TEXT,
+    status VARCHAR(20),
+    due_date TIMESTAMP
+);

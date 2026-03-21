@@ -1,13 +1,10 @@
 package com.vantagepoint.backend.application.task.command;
 
-import lombok.Getter;
 import java.time.LocalDateTime;
 
-@Getter
-public class CreateTaskCommand {
-
-    private Long userId;
-    private String title;
-    private String description;
-    private LocalDateTime dueDate;
-}
+public record CreateTaskCommand(
+        Long userId,
+        String title,
+        String description,
+        LocalDateTime dueDate
+) {}
