@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class UserCreateFactory {
     public User executor(CreateUserCommand command) {
         return User.builder()
-                .user(command.user())
+                .userName(command.userName())
                 .email(command.email())
                 .password(command.password())
                 .build();

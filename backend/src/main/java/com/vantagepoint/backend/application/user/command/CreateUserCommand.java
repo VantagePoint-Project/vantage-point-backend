@@ -5,7 +5,7 @@ package com.vantagepoint.backend.application.user.command;
  * Solo contiene datos, no lógica.
  */
 public record CreateUserCommand(
-        String user,
+        String userName,
         String email,
         String password
 ) {}
