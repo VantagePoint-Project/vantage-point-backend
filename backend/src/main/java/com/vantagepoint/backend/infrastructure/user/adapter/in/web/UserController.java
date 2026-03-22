@@ -18,8 +18,12 @@ public class UserController {
     private final UserApplicationService userApplicationService;
 
     @PostMapping
-    public ResponseEntity<Void> create(@RequestBody CreateUserCommand command) {
-        userApplicationService.handle(command);
+    public ResponseEntity<Void> create(@RequestBody CreateUserCommand request) {
+        var command = new CreateUserCommand(
+                request.username(),
+                request.email(),
+                request.password()
+        );
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
