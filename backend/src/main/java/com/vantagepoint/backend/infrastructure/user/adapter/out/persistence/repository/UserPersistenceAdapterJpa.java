@@ -18,11 +18,8 @@ public class UserPersistenceAdapterJpa implements UserRepositoryPort {
 
     @Override
     public User save(User user) {
-        // 1. Dominio -> Entidad
         UserEntity entity = userPersistenceMapper.toEntity(user);
-        // 2. Guardar en DB
         UserEntity savedEntity = springDataUserRepository.save(entity);
-        // 3. Entidad -> Dominio
         return userPersistenceMapper.toDomain(savedEntity);
     }
 
@@ -34,5 +31,11 @@ public class UserPersistenceAdapterJpa implements UserRepositoryPort {
     @Override
     public Optional<User> findByEmail(String email) {
         return springDataUserRepository.findByEmail(email).map(userPersistenceMapper::toDomain);
+    }
+
+    @Override
+    public Optional<User> findByUsername(String username) {
+        return springDataUserRepository.findByUsername(username)
+                .map(userPersistenceMapper::toDomain);
     }
 }
