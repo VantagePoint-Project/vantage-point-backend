@@ -1,0 +1,41 @@
+name: Vantage Point CI
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Configurar JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'gradle'
+
+      - name: Permisos de ejecución
+        # Agregamos 'backend/' antes de gradlew
+        run: chmod +x backend/gradlew
+
+      - name: Ejecutar Build y Tests
+        env:
+          JWT_SECRET: ${{ secrets.JWT_SECRET }} 
+          JWT_EXPIRATION: 86400000
+        # Usamos 'working-directory' para que Gradle sepa dónde está el proyecto
+        working-directory: backend
+        run: ./gradlew clean build
+
+      - name: Subir Evidencia de Tests
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reporte-de-pruebas
+          # Ajustamos la ruta para que incluya la carpeta backend
+          path: backend/build/reports/tests/test
