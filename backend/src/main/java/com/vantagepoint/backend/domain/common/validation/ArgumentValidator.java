@@ -9,7 +9,8 @@ public final class ArgumentValidator {
     }
 
     public static void validateRequired(Object value, String message) {
-        if (value == null || (value instanceof String && ((String) value).isBlank())) {
+        // Aquí declaras la variable 's' (o el nombre que prefieras) directamente
+        if (value == null || (value instanceof String s && s.isBlank())) {
             throw new InvalidValueException(message);
         }
     }

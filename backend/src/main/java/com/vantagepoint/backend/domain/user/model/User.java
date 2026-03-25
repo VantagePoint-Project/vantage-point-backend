@@ -1,17 +1,21 @@
 package com.vantagepoint.backend.domain.user.model;
 
-import com.vantagepoint.backend.domain.common.validation.ArgumentValidator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
 
-import static com.vantagepoint.backend.domain.common.validation.ArgumentValidator.*;
+import static com.vantagepoint.backend.domain.common.validation.ArgumentValidator.validateLength;
+import static com.vantagepoint.backend.domain.common.validation.ArgumentValidator.validateRegex;
+import static com.vantagepoint.backend.domain.common.validation.ArgumentValidator.validateRequired;
+
 
 @Getter
 @AllArgsConstructor @NoArgsConstructor
 public class User {
+
     private Long id;
     private String username;
     private String email;
@@ -29,6 +33,11 @@ public class User {
 
         this.username = username;
         this.email = email;
+        this.password = password;
+    }
+
+    public void setPassword(String password) {
+        validateRequired(password, "The password is required.");
         this.password = password;
     }
 }

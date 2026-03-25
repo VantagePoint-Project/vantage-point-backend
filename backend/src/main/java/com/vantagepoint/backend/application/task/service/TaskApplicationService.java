@@ -4,6 +4,7 @@ import com.vantagepoint.backend.application.task.command.CreateTaskCommand;
 import com.vantagepoint.backend.application.task.factory.TaskCreateFactory;
 import com.vantagepoint.backend.domain.task.model.Task;
 import com.vantagepoint.backend.domain.task.port.out.TaskRepositoryPort;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,4 +22,8 @@ public class TaskApplicationService {
         return taskRepository.save(task);
     }
 
+    public void handle(CreateTaskCommand command) {
+        Task task = taskCreateFactory.execute(command);
+        taskRepository.save(task);
+    }
 }

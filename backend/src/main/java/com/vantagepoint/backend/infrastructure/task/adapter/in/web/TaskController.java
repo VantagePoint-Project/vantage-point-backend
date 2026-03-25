@@ -17,13 +17,8 @@ public class TaskController {
     private final TaskApplicationService taskApplicationService;
 
     @PostMapping
-    public Task createTask(@RequestBody CreateTaskCommand request) {
-        var command = new CreateTaskCommand(
-                request.userId(),
-                request.title(),
-                request.description(),
-                request.dueDate()
-        );
+    public Task createTask(@RequestBody CreateTaskCommand command) {
+        taskApplicationService.handle(command);
         return taskApplicationService.execute(command);
     }
 }

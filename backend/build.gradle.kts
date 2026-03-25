@@ -2,6 +2,7 @@ plugins {
     java
     id("org.springframework.boot") version "3.4.2"
     id("io.spring.dependency-management") version "1.1.7"
+    id("org.sonarqube") version "7.1.0.6387"
 }
 
 group = "com.vantagepoint"
@@ -23,48 +24,46 @@ repositories {
     mavenCentral()
 }
 
+// --- 1. DECLARACIÓN DE VERSIONES ---
+// Ponemos esto justo antes de las dependencias.
+// Es la forma correcta en Kotlin DSL para evitar el "hardcoding".
+val mapstructVersion = "1.5.5.Final"
+val lombokMapstructBindingVersion = "0.2.0"
+val jjwtVersion = "0.12.5"
+val archunitVersion = "1.2.1"
+
 dependencies {
-    // Spring Boot Starters
+    // --- 2. IMPLEMENTATION (Lógica principal) ---
+    // Agrupamos todos los 'implementation' juntos para cumplir con el "Group by destination"
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-validation")
-    runtimeOnly("org.postgresql:postgresql")
-
-    // Testing
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-
-    // 1. Lombok primero
-    compileOnly("org.projectlombok:lombok")
-    annotationProcessor("org.projectlombok:lombok")
-
-// 2. MapStruct segundo
-    implementation("org.mapstruct:mapstruct:1.5.5.Final")
-    annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
-
-// 3. El Binding de ambos al final
-    annotationProcessor("org.projectlombok:lombok-mapstruct-binding:0.2.0")
-
-    testImplementation("com.tngtech.archunit:archunit-junit5:1.2.1")
-
-    //4. flyway
+    implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.flywaydb:flyway-core")
     implementation("org.flywaydb:flyway-database-postgresql")
+    implementation("org.mapstruct:mapstruct:$mapstructVersion")
+    implementation("io.jsonwebtoken:jjwt-api:$jjwtVersion")
 
-    // test
-    testImplementation("com.h2database:h2")
+    // --- 3. ANNOTATION PROCESSORS & COMPILE ONLY ---
+    // Agrupamos las herramientas de generación de código
+    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
+    annotationProcessor("org.mapstruct:mapstruct-processor:$mapstructVersion")
+    annotationProcessor("org.projectlombok:lombok-mapstruct-binding:$lombokMapstructBindingVersion")
 
-    // --- Seguridad ---
-    // El motor base de Spring Security
-    implementation("org.springframework.boot:spring-boot-starter-security")
+    // --- 4. RUNTIME ONLY ---
+    // Dependencias necesarias solo cuando la app está corriendo
+    runtimeOnly("org.postgresql:postgresql")
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:$jjwtVersion")
+    runtimeOnly("io.jsonwebtoken:jjwt-jackson:$jjwtVersion")
 
-    // Librerías de JJWT para crear y validar los tokens (Versión 0.12.x recomendada para Spring Boot 3+)
-    implementation("io.jsonwebtoken:jjwt-api:0.12.5")
-    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.5")
-    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.5") // Usa Jackson de Spring para armar el JSON del token
-
-    // Herramientas para poder testear la seguridad más adelante
+    // --- 5. TEST (Entorno de pruebas) ---
+    // Agrupamos todas las dependencias de testing
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
+    testImplementation("com.tngtech.archunit:archunit-junit5:$archunitVersion")
+    testImplementation("com.h2database:h2")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 tasks.withType<Test> {
