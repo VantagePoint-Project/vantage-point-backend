@@ -1,10 +1,9 @@
 package com.vantagepoint.backend.domain.common.port;
 
 import com.vantagepoint.backend.domain.user.model.User;
-import org.springframework.stereotype.Component;
 
 import java.util.Optional;
-@Component
+
 public interface SecurityProviderPort {
     // Genera el string del Token (JWT) para un usuario
     String generateToken(User user);
