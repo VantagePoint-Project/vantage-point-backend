@@ -24,11 +24,13 @@ public class TaskEntity {
     @Column(name = "user_id", nullable = false)
     private Long userId;
 
+    @Column(nullable = false)
     private String title;
+
     private String description;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status")
+    @Column(name = "status",  nullable = false)
     private TaskStatus status;
 
     @Column(name = "due_date")

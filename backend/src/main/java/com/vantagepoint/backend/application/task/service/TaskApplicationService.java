@@ -1,6 +1,7 @@
 package com.vantagepoint.backend.application.task.service;
 
 import com.vantagepoint.backend.application.task.command.CreateTaskCommand;
+import com.vantagepoint.backend.application.task.dto.TaskResponse;
 import com.vantagepoint.backend.application.task.factory.TaskCreateFactory;
 import com.vantagepoint.backend.domain.task.model.Task;
 import com.vantagepoint.backend.domain.task.port.out.TaskRepositoryPort;
@@ -13,17 +14,24 @@ import org.springframework.stereotype.Service;
 public class TaskApplicationService {
 
     private final TaskRepositoryPort taskRepository;
-    private final TaskCreateFactory taskCreateFactory;
 
-    public Task execute(CreateTaskCommand command) {
+    //**CREAMOS manualmente la factory (sin Spring)**
+    private final TaskCreateFactory taskCreateFactory = new TaskCreateFactory();
+
+    //**CAMBIO: ahora retorna DTO**
+    public TaskResponse execute(CreateTaskCommand command) {
 
         Task task = taskCreateFactory.execute(command);
 
-        return taskRepository.save(task);
-    }
+        Task savedTask = taskRepository.save(task);
 
-    public void handle(CreateTaskCommand command) {
-        Task task = taskCreateFactory.execute(command);
-        taskRepository.save(task);
+        // **MAPEO a DTO**
+        return new TaskResponse(
+                savedTask.getId(),
+                savedTask.getTitle(),
+                savedTask.getDescription(),
+                savedTask.getStatus(),
+                savedTask.getDueDate()
+        );
     }
 }

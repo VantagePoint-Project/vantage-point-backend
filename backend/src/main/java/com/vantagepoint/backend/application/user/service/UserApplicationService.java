@@ -1,7 +1,9 @@
 package com.vantagepoint.backend.application.user.service;
 
 import com.vantagepoint.backend.application.user.command.CreateUserCommand;
+import com.vantagepoint.backend.application.user.dto.UserResponse;
 import com.vantagepoint.backend.application.user.factory.UserCreateFactory;
+import com.vantagepoint.backend.domain.common.exception.InvalidValueException;
 import com.vantagepoint.backend.domain.user.model.User;
 import com.vantagepoint.backend.domain.user.port.out.UserRepositoryPort;
 import jakarta.transaction.Transactional;
@@ -15,14 +17,32 @@ public class UserApplicationService {
 
     private final PasswordEncoder passwordEncoder;
     private final UserRepositoryPort userRepositoryPort;
-    private final UserCreateFactory userCreateFactory;
 
+    //**CREACIÓN MANUAL (sin Spring)**
+    private final UserCreateFactory userCreateFactory = new UserCreateFactory();
 
     @Transactional
-    public User handle(CreateUserCommand command) {
-        User user = userCreateFactory.executor(command);
+    public UserResponse execute(CreateUserCommand command) { // 🔥 **RENOMBRE handle → execute**
+
+        //**VALIDACIÓN: usuario existente**
+        userRepositoryPort.findByUsername(command.username())
+                .ifPresent(u -> {
+                    throw new InvalidValueException("Username already exists");
+                });
+
+        User user = userCreateFactory.execute(command);
+
+        //**SEGURIDAD: hash de password**
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepositoryPort.save(user);
+
+        User savedUser = userRepositoryPort.save(user);
+
+        //**RETORNAR DTO (NO dominio)**
+        return new UserResponse(
+                savedUser.getId(),
+                savedUser.getUsername(),
+                savedUser.getEmail()
+        );
     }
 
 }

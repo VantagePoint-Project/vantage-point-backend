@@ -43,10 +43,9 @@ public class GlobalExceptionHandler {
     }
 
     // 2. Errores NO Controlados (500) - El "Catch-All"
-    @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGeneralException(Exception ex) {
         return buildResponse(
-                "Ha ocurrido un error inesperado en el servidor",
+                ex.getMessage(), // 🔥 CAMBIO AQUÍ
                 "INTERNAL_SERVER_ERROR",
                 HttpStatus.INTERNAL_SERVER_ERROR
         );
