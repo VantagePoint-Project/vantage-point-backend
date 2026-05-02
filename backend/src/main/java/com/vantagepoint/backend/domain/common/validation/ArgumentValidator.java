@@ -9,7 +9,8 @@ public final class ArgumentValidator {
     }
 
     public static void validateRequired(Object value, String message) {
-        if (value == null || (value instanceof String && ((String) value).isBlank())) {
+        // Aquí declaras la variable 's' (o el nombre que prefieras) directamente
+        if (value == null || (value instanceof String s && s.isBlank())) {
             throw new InvalidValueException(message);
         }
     }
@@ -22,6 +23,11 @@ public final class ArgumentValidator {
 
     public static void validateRegex(String value, String regex, String message) {
         if (value == null || !value.matches(regex)) {
+            throw new InvalidValueException(message);
+        }
+    }
+    public static void validatePositive(Long value, String message) {
+        if (value == null || value <= 0) {
             throw new InvalidValueException(message);
         }
     }

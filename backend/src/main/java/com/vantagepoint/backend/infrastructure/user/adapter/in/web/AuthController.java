@@ -1,6 +1,7 @@
 package com.vantagepoint.backend.infrastructure.user.adapter.in.web;
 
 import com.vantagepoint.backend.application.auth.command.LoginCommand;
+import com.vantagepoint.backend.application.auth.dto.TokenResponse;
 import com.vantagepoint.backend.application.auth.service.AuthApplicationService;
 import com.vantagepoint.backend.infrastructure.common.adapter.in.web.dtos.ApiResponse;
 import lombok.RequiredArgsConstructor;
@@ -9,9 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -22,8 +20,12 @@ public class AuthController {
     private final AuthApplicationService authApplicationService;
 
     @PostMapping("/login")
-    public ResponseEntity<ApiResponse<String>> login(@RequestBody LoginCommand loginCommand) {
-        String token = authApplicationService.login(loginCommand);
-        return ResponseEntity.ok(ApiResponse.success(token, LOGIN_EXITOSO));
+    public ResponseEntity<ApiResponse<TokenResponse>> login(@RequestBody LoginCommand loginCommand) {
+
+        TokenResponse tokenResponse = authApplicationService.login(loginCommand);
+
+        return ResponseEntity.ok(
+                ApiResponse.success(tokenResponse, LOGIN_EXITOSO)
+        );
     }
 }
