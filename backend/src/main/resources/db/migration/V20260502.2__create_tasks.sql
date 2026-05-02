@@ -7,7 +7,7 @@ CREATE TABLE tasks (
     due_date TIMESTAMP,
 
     CONSTRAINT fk_task_user
-        FOREIGN KEY (user_id)
-        REFERENCES users(id)
-        ON DELETE CASCADE
+            FOREIGN KEY (user_id)
+            REFERENCES users(id)
+            ON DELETE CASCADE
 );

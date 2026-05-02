@@ -9,11 +9,9 @@ public class TaskCreateFactory {
 
     public Task execute(CreateTaskCommand command) {
         return Task.builder()
-                .id(UUID.randomUUID())
                 .userId(command.userId())
                 .title(command.title())
                 .description(command.description())
-                .status(TaskStatus.PENDING)
                 .dueDate(command.dueDate())
                 .build();
     }

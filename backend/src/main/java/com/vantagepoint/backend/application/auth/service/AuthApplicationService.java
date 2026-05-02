@@ -18,7 +18,6 @@ public class AuthApplicationService {
     private final SecurityProviderPort securityProvider;
     private final PasswordEncoder passwordEncoder;
 
-    //CAMBIO: ahora retorna TokenResponse en lugar de String**
     public TokenResponse login(LoginCommand loginCommand) {
 
         String username = loginCommand.username();
@@ -30,10 +29,7 @@ public class AuthApplicationService {
         if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new UnauthorizedException("Usuario o contraseña incorrectos");
         }
-
         String token = securityProvider.generateToken(user);
-
-        //NUEVO: se encapsula el token en un DTO**
         return new TokenResponse(token);
     }
 }

@@ -12,20 +12,6 @@ public record CreateTaskCommand(
         String description,
 
         @JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
-        LocalDateTime dueDate
-) {
-    public CreateTaskCommand {
-        //**VALIDACIÓN: userId obligatorio**
-        if (userId == null) {
-            throw new InvalidValueException("UserId is required");
-        }
-        // **VALIDACIÓN: title obligatorio**
-        if (title == null || title.isBlank()) {
-            throw new InvalidValueException("Title is required");
-        }
-        // **VALIDACIÓN: fecha no nula**
-        if (dueDate == null) {
-            throw new InvalidValueException("Due date is required");
-        }
-    }
+        LocalDateTime dueDate) {
+
 }

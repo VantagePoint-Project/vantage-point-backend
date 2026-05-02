@@ -22,7 +22,7 @@ public class UserApplicationService {
     private final UserCreateFactory userCreateFactory = new UserCreateFactory();
 
     @Transactional
-    public UserResponse execute(CreateUserCommand command) { // 🔥 **RENOMBRE handle → execute**
+    public UserResponse execute(CreateUserCommand command) {
 
         //**VALIDACIÓN: usuario existente**
         userRepositoryPort.findByUsername(command.username())

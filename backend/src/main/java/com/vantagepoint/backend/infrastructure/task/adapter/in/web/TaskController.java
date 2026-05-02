@@ -20,7 +20,7 @@ public class TaskController {
 
     @PostMapping
     public ResponseEntity<TaskResponse> create(@RequestBody CreateTaskCommand command) {
-        TaskResponse response = taskApplicationService.execute(command);
+        TaskResponse response = taskApplicationService.handle(command);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }

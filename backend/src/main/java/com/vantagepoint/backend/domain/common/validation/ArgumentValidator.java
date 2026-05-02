@@ -26,4 +26,9 @@ public final class ArgumentValidator {
             throw new InvalidValueException(message);
         }
     }
+    public static void validatePositive(Long value, String message) {
+        if (value == null || value <= 0) {
+            throw new InvalidValueException(message);
+        }
+    }
 }
